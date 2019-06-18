@@ -1,0 +1,10 @@
+{
+  "extends": ["config:js-lib"],
+  "automerge": true,
+  "automergeType": "branch",
+  "prCreation": "not-pending",
+  "unpublishSafe": true,
+  "major": {
+    "automerge": false
+  }
+}

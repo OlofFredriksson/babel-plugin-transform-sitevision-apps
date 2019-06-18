@@ -1,0 +1,22 @@
+# EditorConfig: http://EditorConfig.org
+
+root = true
+
+[*]
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = tab
+charset = utf-8
+
+# in markdown files trailing whitespace may be used to indicate a continuation
+[*.md]
+trim_trailing_whitespace = false
+
+# yaml uses spaces
+[*.yml]
+indent_style = space
+
+# files with predefined style (and usually written to by tools)
+[{package,-lock}.json]
+indent_style = space
+indent_size = 2

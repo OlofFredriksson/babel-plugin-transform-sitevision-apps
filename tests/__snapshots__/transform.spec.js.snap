@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`exported function 1`] = `
+"\\"use strict\\";
+
+define(function (require) {
+  var _exports = {};
+  Object.defineProperty(_exports, \\"__esModule\\", {
+    value: true
+  });
+  _exports.foo = foo;
+
+  function foo(a, b) {
+    return a + b;
+  }
+
+  return _exports;
+});"
+`;

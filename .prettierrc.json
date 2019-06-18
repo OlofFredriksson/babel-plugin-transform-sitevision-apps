@@ -1,0 +1,14 @@
+{
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "useTabs": true,
+
+  "overrides": [
+    {
+      "files": "**/{*,.*}.json",
+      "options": {
+        "useTabs": false
+      }
+    }
+  ]
+}
