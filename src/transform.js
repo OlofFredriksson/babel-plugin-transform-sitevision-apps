@@ -18,7 +18,6 @@ const buildWrapper = template(`
 export default declare((api, options) => {
 	api.assertVersion(7);
 
-	const { loose, allowTopLevelThis, strict, strictMode, noInterop } = options;
 	return {
 		name: "transform-modules-sitevision",
 
@@ -28,11 +27,11 @@ export default declare((api, options) => {
 					if (!isModule(path)) return;
 
 					const { headers } = rewriteModuleStatementsAndPrepareHeader(path, {
-						loose,
-						strict,
-						strictMode,
-						allowTopLevelThis,
-						noInterop,
+						loose: false,
+						strict: false,
+						strictMode: true,
+						allowTopLevelThis: false,
+						noInterop: true,
 					});
 
 					ensureStatementsHoisted(headers);
