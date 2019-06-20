@@ -15,6 +15,33 @@ define(function (require) {
 });"
 `;
 
+exports[`main.js 1`] = `
+"\\"use strict\\";
+
+define(function (require) {
+  var _exports = {};
+  _exports.default = void 0;
+
+  const Component = require('Component');
+
+  var _default = Component.extend({
+    onRendered: function () {
+      console.log(this.state.name); // foo
+    },
+    // collect the information a component needs from the store
+    // always return a new object
+    filterState: function (state) {
+      return _.extend({}, {
+        name: state.name
+      });
+    }
+  });
+
+  _exports.default = _default;
+  return _exports.default;
+});"
+`;
+
 exports[`server module 1`] = `
 "\\"use strict\\";
 

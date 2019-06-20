@@ -8,16 +8,20 @@ import { template } from "@babel/core";
 
 const buildWrapper = template(`
   define(function(require) {
-    var _exports = {};
+    var MODULE = {};
 
     BODY
 
-    return _exports; })
+    return MODULE_RETURN; })
 `);
 
 export default declare((api, options) => {
 	api.assertVersion(7);
 
+	const {
+		loose,
+		mainjs = false,
+	} = options;
 	return {
 		name: "transform-modules-sitevision",
 
@@ -25,6 +29,13 @@ export default declare((api, options) => {
 			Program: {
 				exit(path) {
 					if (!isModule(path)) return;
+
+					let module = '_exports';
+					let moduleReturn = '_exports';
+
+					if (mainjs) {
+						moduleReturn = `${module}.default`;
+					}
 
 					const { headers } = rewriteModuleStatementsAndPrepareHeader(path, {
 						loose: false,
@@ -39,6 +50,8 @@ export default declare((api, options) => {
 
 					path.node.body = [
 						buildWrapper({
+							MODULE: module,
+							MODULE_RETURN: moduleReturn,
 							BODY: path.node.body,
 						}),
 					];
