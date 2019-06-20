@@ -28,7 +28,7 @@ export default declare((api, options) => {
 
 					const { headers } = rewriteModuleStatementsAndPrepareHeader(path, {
 						loose: false,
-						strict: false,
+						strict: true,
 						strictMode: true,
 						allowTopLevelThis: false,
 						noInterop: true,

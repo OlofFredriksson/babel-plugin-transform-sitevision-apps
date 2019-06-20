@@ -5,15 +5,39 @@ exports[`exported function 1`] = `
 
 define(function (require) {
   var _exports = {};
-  Object.defineProperty(_exports, \\"__esModule\\", {
-    value: true
-  });
   _exports.foo = foo;
 
   function foo(a, b) {
     return a + b;
   }
 
+  return _exports;
+});"
+`;
+
+exports[`server module 1`] = `
+"\\"use strict\\";
+
+define(function (require) {
+  var _exports = {};
+  _exports.getPropertyFromCurrentPage = getPropertyFromCurrentPage;
+  _exports.add = add;
+
+  const portletContextUtil = require('PortletContextUtil');
+
+  const properties = require('Properties');
+
+  function getPropertyFromCurrentPage(prop) {
+    return properties.get(portletContextUtil.getCurrentPage(), prop);
+  }
+
+  ;
+
+  function add(a, b) {
+    return a + b;
+  }
+
+  ;
   return _exports;
 });"
 `;

@@ -19,3 +19,7 @@ function compile(filename, config) {
 test("exported function", () => {
 	expect(compile("fixtures/exported-function.js")).toMatchSnapshot();
 });
+
+test("server module", () => {
+	expect(compile("fixtures/server.module.js")).toMatchSnapshot();
+});
