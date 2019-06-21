@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`compiling files (dynamic exports name) exported function 1`] = `
-"\\"use strict\\";
-
-define(function (require) {
+"define(function (require) {
   var exportedfunction = {};
   _exports.foo = foo;
 
@@ -16,9 +14,7 @@ define(function (require) {
 `;
 
 exports[`compiling source (static exports name) exported function 1`] = `
-"\\"use strict\\";
-
-define(function (require) {
+"define(function (require) {
   var _exports = {};
   _exports.foo = foo;
 
@@ -31,9 +27,7 @@ define(function (require) {
 `;
 
 exports[`compiling source (static exports name) main.js 1`] = `
-"\\"use strict\\";
-
-define(function (require) {
+"define(function (require) {
   var _exports = {};
   _exports.default = void 0;
 
@@ -58,9 +52,7 @@ define(function (require) {
 `;
 
 exports[`compiling source (static exports name) server module 1`] = `
-"\\"use strict\\";
-
-define(function (require) {
+"define(function (require) {
   var _exports = {};
   _exports.getPropertyFromCurrentPage = getPropertyFromCurrentPage;
   _exports.add = add;
