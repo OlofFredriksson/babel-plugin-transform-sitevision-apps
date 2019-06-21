@@ -37,7 +37,7 @@ define(function (require) {
   var _exports = {};
   _exports.default = void 0;
 
-  const Component = require('Component');
+  const Component = require(\\"Component\\");
 
   var _default = Component.extend({
     onRendered: function () {
@@ -65,21 +65,18 @@ define(function (require) {
   _exports.getPropertyFromCurrentPage = getPropertyFromCurrentPage;
   _exports.add = add;
 
-  const portletContextUtil = require('PortletContextUtil');
+  const portletContextUtil = require(\\"PortletContextUtil\\");
 
-  const properties = require('Properties');
+  const properties = require(\\"Properties\\");
 
   function getPropertyFromCurrentPage(prop) {
     return properties.get(portletContextUtil.getCurrentPage(), prop);
   }
 
-  ;
-
   function add(a, b) {
     return a + b;
   }
 
-  ;
   return _exports;
 });"
 `;
