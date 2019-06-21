@@ -31,7 +31,7 @@ test("main.js", () => {
 	const config = 	{
 		plugins: [
 			[ path.join(__dirname, "../src/transform"), {
-				"mainjs": true
+				"type": "mainjs"
 			}]
 		]
 	};

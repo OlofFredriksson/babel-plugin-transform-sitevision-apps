@@ -15,12 +15,17 @@ const buildWrapper = template(`
     return MODULE_RETURN; })
 `);
 
+const sitevisionServerJsTypes = {
+	modules: "modules",
+	mainjs: "mainjs",
+	index: "indexjs" // not supported yet
+  };
+
 export default declare((api, options) => {
 	api.assertVersion(7);
 
 	const {
-		loose,
-		mainjs = false,
+		type = sitevisionServerJsTypes.modules
 	} = options;
 	return {
 		name: "transform-modules-sitevision",
@@ -30,11 +35,15 @@ export default declare((api, options) => {
 				exit(path) {
 					if (!isModule(path)) return;
 
-					let module = '_exports';
-					let moduleReturn = '_exports';
-
-					if (mainjs) {
+					module = '_exports';
+					let moduleReturn;
+					switch (type) {
+					case sitevisionServerJsTypes.mainjs:
 						moduleReturn = `${module}.default`;
+						break;
+					case sitevisionServerJsTypes.modules:
+						moduleReturn = module;
+						break;
 					}
 
 					const { headers } = rewriteModuleStatementsAndPrepareHeader(path, {
