@@ -6,7 +6,7 @@ import {
 } from "@babel/helper-module-transforms";
 import { template } from "@babel/core";
 
-const nodePath = require('path');
+const nodePath = require("path");
 
 const buildWrapper = template(`
   define(function(require) {
@@ -20,15 +20,13 @@ const buildWrapper = template(`
 const sitevisionServerJsTypes = {
 	modules: "modules",
 	mainjs: "mainjs",
-	index: "indexjs" // not supported yet
-  };
+	index: "indexjs", // not supported yet
+};
 
 export default declare((api, options) => {
 	api.assertVersion(7);
 
-	const {
-		type = sitevisionServerJsTypes.modules
-	} = options;
+	const { type = sitevisionServerJsTypes.modules } = options;
 	return {
 		name: "transform-modules-sitevision",
 
@@ -40,19 +38,20 @@ export default declare((api, options) => {
 					let module;
 					let moduleReturn;
 					if (this.file.opts.filename) {
-						module = nodePath.parse(this.file.opts.filename).name.replace(/[\W_]/g,"");;
-					}
-					else {
-						module = '_exports';
+						module = nodePath
+							.parse(this.file.opts.filename)
+							.name.replace(/[\W_]/g, "");
+					} else {
+						module = "_exports";
 					}
 
 					switch (type) {
-					case sitevisionServerJsTypes.mainjs:
-						moduleReturn = `${module}.default`;
-						break;
-					case sitevisionServerJsTypes.modules:
-						moduleReturn = module;
-						break;
+						case sitevisionServerJsTypes.mainjs:
+							moduleReturn = `${module}.default`;
+							break;
+						case sitevisionServerJsTypes.modules:
+							moduleReturn = module;
+							break;
 					}
 
 					const { headers } = rewriteModuleStatementsAndPrepareHeader(path, {

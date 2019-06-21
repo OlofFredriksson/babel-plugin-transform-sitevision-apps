@@ -1,4 +1,4 @@
-const Component = require('Component');
+const Component = require("Component");
 
 export default Component.extend({
 	onRendered: function() {
@@ -8,6 +8,6 @@ export default Component.extend({
 	// collect the information a component needs from the store
 	// always return a new object
 	filterState: function(state) {
-		return _.extend({}, {name: state.name});
-	}
+		return _.extend({}, { name: state.name });
+	},
 });
