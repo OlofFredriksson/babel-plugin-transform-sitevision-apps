@@ -7,33 +7,50 @@ const defaultConfig = {
 	plugins: [path.join(__dirname, "../src/transform")],
 };
 
-function compile(filename, config) {
-	const source = fs.readFileSync(path.join(__dirname, filename), "utf-8");
-
+function compileSource(source, config) {
 	const plugins = Object.assign({}, defaultConfig, config);
-	console.log(plugins);
-	const { code } = babel.transform(
+	const { code } = babel.transformSync(
 		source,
 		plugins
 	);
 	return code;
 }
 
-test("exported function", () => {
-	expect(compile("fixtures/exported-function.js")).toMatchSnapshot();
+function compileFile(fileName, config) {
+	const plugins = Object.assign({}, defaultConfig, config);
+	const { code } = babel.transformFileSync(
+		path.join(__dirname, fileName),
+		plugins
+	);
+	return code;
+}
+
+describe('compiling source (static exports name)', () => {
+	test("exported function", () => {
+		const source = fs.readFileSync(path.join(__dirname, "fixtures/exported-function.js"), "utf-8");
+		expect(compileSource(source)).toMatchSnapshot();
+	});
+
+	test("server module", () => {
+		const source = fs.readFileSync(path.join(__dirname, "fixtures/server.module.js"), "utf-8");
+		expect(compileSource(source)).toMatchSnapshot();
+	});
+
+	test("main.js", () => {
+		const source = fs.readFileSync(path.join(__dirname, "fixtures/main.js"), "utf-8");
+		const config = 	{
+			plugins: [
+				[ path.join(__dirname, "../src/transform"), {
+					"type": "mainjs"
+				}]
+			]
+		};
+		expect(compileSource(source, config)).toMatchSnapshot();
+	});
 });
 
-test("server module", () => {
-	expect(compile("fixtures/server.module.js")).toMatchSnapshot();
-});
-
-test("main.js", () => {
-	const config = 	{
-		plugins: [
-			[ path.join(__dirname, "../src/transform"), {
-				"type": "mainjs"
-			}]
-		]
-	};
-	expect(compile("fixtures/main.js", config)).toMatchSnapshot();
+describe('compiling files (dynamic exports name)', () => {
+	test("exported function", () => {
+		expect(compileFile("fixtures/exported-function.js")).toMatchSnapshot();
+	});
 });
