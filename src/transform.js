@@ -98,16 +98,15 @@ export default declare((api, options) => {
 
 							if (metadata.lazy) {
 								header = template.ast`
-							  function ${metadata.name}() {
-								const data = ${init};
-								${metadata.name} = function(){ return data; };
-								return data;
-							  }
-							`;
+								function ${metadata.name}() {
+									const data = ${init};
+									${metadata.name} = function(){ return data; };
+									return data;
+								}`;
 							} else {
 								header = template.ast`
-							  var ${metadata.name} = ${init};
-							`;
+									var ${metadata.name} = ${init};
+								`;
 							}
 						}
 						header.loc = metadata.loc;
