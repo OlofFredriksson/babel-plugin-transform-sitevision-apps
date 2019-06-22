@@ -1,5 +1,5 @@
 import router from "router";
-function index() {
+export function index() {
 	router.get("/", function(req, res) {
 		res.render("/", {});
 	});
