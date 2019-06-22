@@ -30,6 +30,8 @@ const defaults = {
 	noInterop: false,
 };
 
+// Only supporting server redendering JS.
+// Se https://developer.sitevision.se/docs/webapps/getting-started for different types of files
 const sitevisionServerJsTypes = {
 	modules: "modules",
 	mainjs: "mainjs",
