@@ -2,9 +2,12 @@ import { declare } from "@babel/helper-plugin-utils";
 import {
 	isModule,
 	rewriteModuleStatementsAndPrepareHeader,
+	buildNamespaceInitStatements,
+	isSideEffectImport,
 	ensureStatementsHoisted,
+	wrapInterop,
 } from "@babel/helper-module-transforms";
-import { template } from "@babel/core";
+import { template, types as t } from "@babel/core";
 
 const nodePath = require("path");
 
@@ -22,6 +25,8 @@ const sitevisionServerJsTypes = {
 	mainjs: "mainjs",
 	index: "indexjs", // not supported yet
 };
+
+const loose = false;
 
 export default declare((api, options) => {
 	api.assertVersion(7);
@@ -57,14 +62,53 @@ export default declare((api, options) => {
 							break;
 					}
 
-					const { headers } = rewriteModuleStatementsAndPrepareHeader(path, {
-						exportName: module,
-						loose: false,
-						strict: true,
-						strictMode: false,
-						allowTopLevelThis: false,
-						noInterop: true,
-					});
+					const { meta, headers } = rewriteModuleStatementsAndPrepareHeader(
+						path,
+						{
+							exportName: module,
+							loose: loose,
+							strict: true,
+							strictMode: false,
+							allowTopLevelThis: false,
+							noInterop: true,
+						}
+					);
+
+					for (const [source, metadata] of meta.source) {
+						const loadExpr = t.callExpression(t.identifier("require"), [
+							t.stringLiteral(source),
+						]);
+
+						let header;
+						if (isSideEffectImport(metadata)) {
+							if (metadata.lazy) throw new Error("Assertion failure");
+
+							header = t.expressionStatement(loadExpr);
+						} else {
+							const init =
+								wrapInterop(path, loadExpr, metadata.interop) || loadExpr;
+
+							if (metadata.lazy) {
+								header = template.ast`
+							  function ${metadata.name}() {
+								const data = ${init};
+								${metadata.name} = function(){ return data; };
+								return data;
+							  }
+							`;
+							} else {
+								header = template.ast`
+							  var ${metadata.name} = ${init};
+							`;
+							}
+						}
+						header.loc = metadata.loc;
+
+						headers.push(header);
+						headers.push(
+							...buildNamespaceInitStatements(meta, metadata, loose)
+						);
+					}
 
 					ensureStatementsHoisted(headers);
 					path.unshiftContainer("body", headers);

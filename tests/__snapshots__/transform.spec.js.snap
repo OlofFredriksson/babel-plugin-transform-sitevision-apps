@@ -31,6 +31,7 @@ exports[`compiling source (static exports name) main.js 1`] = `
   var _exports = {};
   _exports.default = void 0;
 
+  /* global _ */
   const Component = require(\\"Component\\");
 
   var _default = Component.extend({
@@ -57,9 +58,9 @@ exports[`compiling source (static exports name) server module 1`] = `
   _exports.getPropertyFromCurrentPage = getPropertyFromCurrentPage;
   _exports.add = add;
 
-  const portletContextUtil = require(\\"PortletContextUtil\\");
+  var portletContextUtil = require(\\"PortletContextUtil\\");
 
-  const properties = require(\\"Properties\\");
+  var properties = require(\\"Properties\\");
 
   function getPropertyFromCurrentPage(prop) {
     return properties.get(portletContextUtil.getCurrentPage(), prop);
