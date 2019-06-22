@@ -70,6 +70,8 @@ export default declare((api, options) => {
 						case sitevisionServerJsTypes.modules:
 							moduleReturn = module;
 							break;
+						default:
+							throw new Error(`Specify correct SV file type`);
 					}
 
 					const { meta, headers } = rewriteModuleStatementsAndPrepareHeader(

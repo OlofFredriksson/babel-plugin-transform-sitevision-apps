@@ -63,3 +63,20 @@ describe("compiling files (dynamic exports name)", () => {
 		expect(compileFile("fixtures/exported-function.js")).toMatchSnapshot();
 	});
 });
+
+describe("error handling", () => {
+	test("should fail with invalid SV type", () => {
+		const source = fs.readFileSync(
+			path.join(__dirname, "fixtures/main.js"),
+			"utf-8"
+		);
+		const config = {
+			plugins: [
+				[path.join(__dirname, "../src/transform"), { type: "invalidType" }],
+			],
+		};
+		expect(() => {
+			compileSource(source, config);
+		}).toThrow();
+	});
+});
