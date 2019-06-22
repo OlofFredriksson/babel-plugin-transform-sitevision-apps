@@ -1,6 +1,5 @@
 /* global _ */
-const Component = require("Component");
-
+import Component from "Component";
 export default Component.extend({
 	onRendered: function() {
 		console.log(this.state.name); // foo

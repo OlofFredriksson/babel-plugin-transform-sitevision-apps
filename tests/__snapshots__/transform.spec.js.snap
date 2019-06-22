@@ -31,10 +31,12 @@ exports[`compiling source (static exports name) main.js 1`] = `
   var _exports = {};
   _exports.default = void 0;
 
-  /* global _ */
-  const Component = require(\\"Component\\");
+  var _Component = _interopRequireDefault(require(\\"Component\\"));
 
-  var _default = Component.extend({
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  /* global _ */
+  var _default = _Component.default.extend({
     onRendered: function () {
       console.log(this.state.name); // foo
     },

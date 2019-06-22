@@ -20,13 +20,21 @@ const buildWrapper = template(`
     return MODULE_RETURN; })
 `);
 
+// See https://babeljs.io/docs/en/next/babel-plugin-transform-modules-commonjs.html
+// for more info
+const defaults = {
+	loose: false,
+	strict: true,
+	strictMode: false,
+	allowTopLevelThis: false,
+	noInterop: false,
+};
+
 const sitevisionServerJsTypes = {
 	modules: "modules",
 	mainjs: "mainjs",
 	index: "indexjs", // not supported yet
 };
-
-const loose = false;
 
 export default declare((api, options) => {
 	api.assertVersion(7);
@@ -66,11 +74,11 @@ export default declare((api, options) => {
 						path,
 						{
 							exportName: module,
-							loose: loose,
-							strict: true,
-							strictMode: false,
-							allowTopLevelThis: false,
-							noInterop: false,
+							loose: defaults.loose,
+							strict: defaults.strict,
+							strictMode: defaults.strictMode,
+							allowTopLevelThis: defaults.allowTopLevelThis,
+							noInterop: defaults.noInterop,
 						}
 					);
 
@@ -106,7 +114,7 @@ export default declare((api, options) => {
 
 						headers.push(header);
 						headers.push(
-							...buildNamespaceInitStatements(meta, metadata, loose)
+							...buildNamespaceInitStatements(meta, metadata, defaults.loose)
 						);
 					}
 
