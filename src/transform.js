@@ -70,7 +70,7 @@ export default declare((api, options) => {
 							strict: true,
 							strictMode: false,
 							allowTopLevelThis: false,
-							noInterop: true,
+							noInterop: false,
 						}
 					);
 

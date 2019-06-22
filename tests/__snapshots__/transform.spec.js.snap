@@ -58,12 +58,14 @@ exports[`compiling source (static exports name) server module 1`] = `
   _exports.getPropertyFromCurrentPage = getPropertyFromCurrentPage;
   _exports.add = add;
 
-  var portletContextUtil = require(\\"PortletContextUtil\\");
+  var _PortletContextUtil = _interopRequireDefault(require(\\"PortletContextUtil\\"));
 
-  var properties = require(\\"Properties\\");
+  var _Properties = _interopRequireDefault(require(\\"Properties\\"));
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   function getPropertyFromCurrentPage(prop) {
-    return properties.get(portletContextUtil.getCurrentPage(), prop);
+    return _Properties.default.get(_PortletContextUtil.default.getCurrentPage(), prop);
   }
 
   function add(a, b) {

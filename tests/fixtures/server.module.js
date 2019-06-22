@@ -1,5 +1,5 @@
-import * as portletContextUtil from "PortletContextUtil";
-import * as properties from "Properties";
+import portletContextUtil from "PortletContextUtil";
+import properties from "Properties";
 
 export function getPropertyFromCurrentPage(prop) {
 	return properties.get(portletContextUtil.getCurrentPage(), prop);
