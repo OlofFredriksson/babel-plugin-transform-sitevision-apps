@@ -34,6 +34,9 @@ export default declare((api, options) => {
 			Program: {
 				exit(path) {
 					if (!isModule(path)) return;
+					path.scope.rename("exports");
+					path.scope.rename("module");
+					path.scope.rename("require");
 
 					let module;
 					let moduleReturn;
@@ -55,6 +58,7 @@ export default declare((api, options) => {
 					}
 
 					const { headers } = rewriteModuleStatementsAndPrepareHeader(path, {
+						exportName: module,
 						loose: false,
 						strict: true,
 						strictMode: false,

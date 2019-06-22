@@ -3,7 +3,7 @@
 exports[`compiling files (dynamic exports name) exported function 1`] = `
 "define(function (require) {
   var exportedfunction = {};
-  _exports.foo = foo;
+  exportedfunction.foo = foo;
 
   function foo(a, b) {
     return a + b;
