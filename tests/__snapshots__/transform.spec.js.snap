@@ -30,6 +30,8 @@ exports[`compiling source (static exports name) index.js 1`] = `
 "(function () {
   'use strict';
 
+  _exports.index = index;
+
   var _router = _interopRequireDefault(require(\\"router\\"));
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
