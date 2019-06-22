@@ -9,7 +9,8 @@
 
   "rules": {
     "prettier/prettier": "warn",
-    "no-console": "off"
+    "no-console": "off",
+    "complexity": ["error", 14]
   },
 
   "overrides": [

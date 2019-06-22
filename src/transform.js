@@ -20,6 +20,15 @@ const buildWrapper = template(`
     return MODULE_RETURN; })
 `);
 
+const buildWrapperIndex = template(`
+  (function() {
+    'use strict';
+
+    BODY
+
+  }());
+`);
+
 // See https://babeljs.io/docs/en/next/babel-plugin-transform-modules-commonjs.html
 // for more info
 const defaults = {
@@ -69,6 +78,10 @@ export default declare((api, options) => {
 							break;
 						case sitevisionServerJsTypes.modules:
 							moduleReturn = module;
+							break;
+						case sitevisionServerJsTypes.index:
+							module = ""; // Not relevant
+							moduleReturn = ""; // Not relevant
 							break;
 						default:
 							throw new Error(`Specify correct SV file type`);
@@ -124,13 +137,21 @@ export default declare((api, options) => {
 					ensureStatementsHoisted(headers);
 					path.unshiftContainer("body", headers);
 
-					path.node.body = [
-						buildWrapper({
-							MODULE: module,
-							MODULE_RETURN: moduleReturn,
-							BODY: path.node.body,
-						}),
-					];
+					if (options.type === sitevisionServerJsTypes.index) {
+						path.node.body = [
+							buildWrapperIndex({
+								BODY: path.node.body,
+							}),
+						];
+					} else {
+						path.node.body = [
+							buildWrapper({
+								MODULE: module,
+								MODULE_RETURN: moduleReturn,
+								BODY: path.node.body,
+							}),
+						];
+					}
 				},
 			},
 		},

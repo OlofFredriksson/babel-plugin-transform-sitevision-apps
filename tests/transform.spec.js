@@ -56,6 +56,24 @@ describe("compiling source (static exports name)", () => {
 		};
 		expect(compileSource(source, config)).toMatchSnapshot();
 	});
+
+	test("index.js", () => {
+		const source = fs.readFileSync(
+			path.join(__dirname, "fixtures/index.js"),
+			"utf-8"
+		);
+		const config = {
+			plugins: [
+				[
+					path.join(__dirname, "../src/transform"),
+					{
+						type: "indexjs",
+					},
+				],
+			],
+		};
+		expect(compileSource(source, config)).toMatchSnapshot();
+	});
 });
 
 describe("compiling files (dynamic exports name)", () => {

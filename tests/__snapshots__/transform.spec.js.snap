@@ -26,6 +26,24 @@ exports[`compiling source (static exports name) exported function 1`] = `
 });"
 `;
 
+exports[`compiling source (static exports name) index.js 1`] = `
+"(function () {
+  'use strict';
+
+  var _router = _interopRequireDefault(require(\\"router\\"));
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function index() {
+    _router.default.get(\\"/\\", function (req, res) {
+      res.render(\\"/\\", {});
+    });
+  }
+
+  index();
+})();"
+`;
+
 exports[`compiling source (static exports name) main.js 1`] = `
 "define(function (require) {
   var _exports = {};
