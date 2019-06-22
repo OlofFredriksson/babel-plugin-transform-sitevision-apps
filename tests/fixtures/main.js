@@ -1,3 +1,4 @@
+/* global _ */
 const Component = require("Component");
 
 export default Component.extend({
