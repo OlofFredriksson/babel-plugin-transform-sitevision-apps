@@ -44,7 +44,7 @@ const defaults = {
 const sitevisionServerJsTypes = {
 	modules: "modules",
 	mainjs: "mainjs",
-	index: "indexjs", // not supported yet
+	indexjs: "indexjs", // not supported yet
 };
 
 export default declare((api, options) => {
@@ -79,7 +79,7 @@ export default declare((api, options) => {
 						case sitevisionServerJsTypes.modules:
 							moduleReturn = module;
 							break;
-						case sitevisionServerJsTypes.index:
+						case sitevisionServerJsTypes.indexjs:
 							module = ""; // Not relevant
 							moduleReturn = ""; // Not relevant
 							break;
@@ -137,7 +137,7 @@ export default declare((api, options) => {
 					ensureStatementsHoisted(headers);
 					path.unshiftContainer("body", headers);
 
-					if (options.type === sitevisionServerJsTypes.index) {
+					if (options.type === sitevisionServerJsTypes.indexjs) {
 						path.node.body = [
 							buildWrapperIndex({
 								BODY: path.node.body,
