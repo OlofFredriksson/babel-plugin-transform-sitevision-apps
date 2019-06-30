@@ -2,6 +2,8 @@ import * as babel from "@babel/core";
 import path from "path";
 import fs from "fs";
 
+const encoding = "UTF-8";
+
 const defaultConfig = {
 	babelrc: false,
 	plugins: [path.join(__dirname, "../src/transform")],
@@ -26,7 +28,7 @@ describe("compiling source (static exports name)", () => {
 	test("exported function", () => {
 		const source = fs.readFileSync(
 			path.join(__dirname, "fixtures/exported-function.js"),
-			"utf-8"
+			encoding
 		);
 		expect(compileSource(source)).toMatchSnapshot();
 	});
@@ -34,7 +36,7 @@ describe("compiling source (static exports name)", () => {
 	test("server module", () => {
 		const source = fs.readFileSync(
 			path.join(__dirname, "fixtures/server.module.js"),
-			"utf-8"
+			encoding
 		);
 		expect(compileSource(source)).toMatchSnapshot();
 	});
@@ -42,17 +44,10 @@ describe("compiling source (static exports name)", () => {
 	test("main.js", () => {
 		const source = fs.readFileSync(
 			path.join(__dirname, "fixtures/main.js"),
-			"utf-8"
+			encoding
 		);
 		const config = {
-			plugins: [
-				[
-					path.join(__dirname, "../src/transform"),
-					{
-						type: "mainjs",
-					},
-				],
-			],
+			plugins: [[path.join(__dirname, "../src/transform"), { type: "mainjs" }]],
 		};
 		expect(compileSource(source, config)).toMatchSnapshot();
 	});
@@ -60,16 +55,11 @@ describe("compiling source (static exports name)", () => {
 	test("index.js", () => {
 		const source = fs.readFileSync(
 			path.join(__dirname, "fixtures/index.js"),
-			"utf-8"
+			encoding
 		);
 		const config = {
 			plugins: [
-				[
-					path.join(__dirname, "../src/transform"),
-					{
-						type: "indexjs",
-					},
-				],
+				[path.join(__dirname, "../src/transform"), { type: "indexjs" }],
 			],
 		};
 		expect(compileSource(source, config)).toMatchSnapshot();
@@ -86,7 +76,7 @@ describe("error handling", () => {
 	test("should fail with invalid SV type", () => {
 		const source = fs.readFileSync(
 			path.join(__dirname, "fixtures/main.js"),
-			"utf-8"
+			encoding
 		);
 		const config = {
 			plugins: [
