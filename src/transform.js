@@ -29,6 +29,8 @@ const buildWrapperIndex = template(`
   }());
 `);
 
+const defaultModule = "_exports";
+
 // See https://babeljs.io/docs/en/next/babel-plugin-transform-modules-commonjs.html
 // for more info
 const defaults = {
@@ -44,7 +46,7 @@ const defaults = {
 const sitevisionServerJsTypes = {
 	modules: "modules",
 	mainjs: "mainjs",
-	indexjs: "indexjs", // not supported yet
+	indexjs: "indexjs",
 };
 
 export default declare((api, options) => {
@@ -69,7 +71,7 @@ export default declare((api, options) => {
 							.parse(this.file.opts.filename)
 							.name.replace(/[\W_]/g, "");
 					} else {
-						module = "_exports";
+						module = defaultModule;
 					}
 
 					switch (type) {
