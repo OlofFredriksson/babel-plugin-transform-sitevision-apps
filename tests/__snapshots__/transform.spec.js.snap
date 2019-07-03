@@ -6,7 +6,11 @@ exports[`compiling files (dynamic exports name) exported function 1`] = `
   exportedfunction.foo = foo;
 
   function foo(a, b) {
-    return a + b;
+    return a + b + internalFunction(a);
+  }
+
+  function internalFunction(a) {
+    return a;
   }
 
   return exportedfunction;
@@ -19,7 +23,11 @@ exports[`compiling source (static exports name) exported function 1`] = `
   _exports.foo = foo;
 
   function foo(a, b) {
-    return a + b;
+    return a + b + internalFunction(a);
+  }
+
+  function internalFunction(a) {
+    return a;
   }
 
   return _exports;
