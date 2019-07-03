@@ -1,6 +1,6 @@
 # babel-plugin-transform-modules-sitevision
 
-Transform Sitevision Server Side Javascript.
+> Transform Sitevision Server Side Javascript.
 
 - index.js
 - main.js
