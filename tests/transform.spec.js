@@ -65,6 +65,9 @@ describe("compiling files (dynamic exports name)", () => {
 	test("exported function", () => {
 		expect(compileFile("fixtures/exported-function.js")).toMatchSnapshot();
 	});
+	test("should rename internal function if same as fileName", () => {
+		expect(compileFile("fixtures/sameNameAsFunction.js")).toMatchSnapshot();
+	});
 });
 
 describe("error handling", () => {

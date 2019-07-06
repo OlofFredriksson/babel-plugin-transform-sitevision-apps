@@ -17,6 +17,19 @@ exports[`compiling files (dynamic exports name) exported function 1`] = `
 });"
 `;
 
+exports[`compiling files (dynamic exports name) should rename internal function if same as fileName 1`] = `
+"define(function (require) {
+  var sameNameAsFunction = {};
+  sameNameAsFunction.sameNameAsFunction = _sameNameAsFunction;
+
+  function _sameNameAsFunction(prop) {
+    return 10;
+  }
+
+  return sameNameAsFunction;
+});"
+`;
+
 exports[`compiling source (static exports name) exported function 1`] = `
 "define(function (require) {
   var _exports = {};

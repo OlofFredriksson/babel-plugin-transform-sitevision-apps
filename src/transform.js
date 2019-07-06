@@ -70,6 +70,7 @@ export default declare((api, options) => {
 						module = nodePath
 							.parse(this.file.opts.filename)
 							.name.replace(/[\W_]/g, "");
+						path.scope.rename(module);
 					} else {
 						module = defaultModule;
 					}
