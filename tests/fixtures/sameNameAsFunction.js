@@ -1,3 +1,3 @@
-export function sameNameAsFunction(prop) {
+export function sameNameAsFunction() {
 	return 10;
 }

@@ -22,7 +22,7 @@ exports[`compiling files (dynamic exports name) should rename internal function 
   var sameNameAsFunction = {};
   sameNameAsFunction.sameNameAsFunction = _sameNameAsFunction;
 
-  function _sameNameAsFunction(prop) {
+  function _sameNameAsFunction() {
     return 10;
   }
 
