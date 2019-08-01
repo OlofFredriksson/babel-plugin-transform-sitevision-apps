@@ -21,7 +21,7 @@ jobs:
       - run: npm run build
       - run:
           name: Code Analysis
-          command: npm run lint
+          command: npm run eslint
       - run:
           name: Run tests
           command: npm test
