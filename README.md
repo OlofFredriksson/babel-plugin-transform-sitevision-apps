@@ -2,6 +2,8 @@
 
 > Transform Sitevision Server Side Javascript.
 
+[![CircleCI](https://circleci.com/gh/OlofFredriksson/babel-plugin-transform-sitevision-apps.svg?style=svg)](https://circleci.com/gh/OlofFredriksson/babel-plugin-transform-sitevision-apps)
+
 ## Webapps
 
 - index.js
