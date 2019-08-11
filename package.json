@@ -6,7 +6,7 @@
   "scripts": {
     "build": "mkdir -p dist && babel src/transform.js -o dist/transform.js",
     "clean": "rm -rf dist",
-    "eslint": "eslint src/ tests/",
+    "lint": "eslint src/ tests/",
     "postversion": "git push --follow-tags",
     "prettier:check": "prettier '**/*.{js,json,md}' --list-different",
     "prettier:write": "prettier '**/*.{js,json,md}' --write",
