@@ -10,7 +10,6 @@
     "postversion": "git push --follow-tags",
     "prettier:check": "prettier '**/*.{js,json,md}' --list-different",
     "prettier:write": "prettier '**/*.{js,json,md}' --write",
-    "version": "sv-update-changelog -i && git add CHANGELOG.md",
     "test": "jest"
   },
   "husky": {
@@ -26,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@git.sidvind.com:422/ext/babel-plugin-transform-modules-sitevision.git"
+    "url": "git@github.com:OlofFredriksson/babel-plugin-transform-sitevision-apps.git"
   },
   "keywords": [
     "babel-plugin"
   ],
-  "author": "David Sveningsson <ext@sidvind.com>",
+  "author": "Olof",
   "license": "MIT",
   "files": [
     "dist/**"
