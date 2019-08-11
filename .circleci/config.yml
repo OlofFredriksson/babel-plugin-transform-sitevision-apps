@@ -17,8 +17,12 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: npm install
-      - run: npm run build
+      - run:
+          name: Install
+          command: npm install
+      - run:
+          name: Build
+          command: npm run build
       - run:
           name: Code Analysis
           command: npm run eslint
