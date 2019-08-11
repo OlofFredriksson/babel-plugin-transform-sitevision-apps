@@ -20,6 +20,8 @@ TBD
 
 # Usage
 
+`npm install --save-dev babel-plugin-transform-sitevision-apps`
+
 ## Node Api
 
 ```
