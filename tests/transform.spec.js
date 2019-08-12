@@ -38,7 +38,7 @@ describe("compiling source (static exports name)", () => {
 
 	test("server module", () => {
 		expect(
-			compileSource(readFile("fixtures/server.module.js"))
+			compileSource(readFile("fixtures/webapps/server.module.js"))
 		).toMatchSnapshot();
 	});
 
@@ -47,7 +47,7 @@ describe("compiling source (static exports name)", () => {
 			plugins: [[path.join(__dirname, pluginPath), { type: "mainjs" }]],
 		};
 		expect(
-			compileSource(readFile("fixtures/main.js"), config)
+			compileSource(readFile("fixtures/webapps/main.js"), config)
 		).toMatchSnapshot();
 	});
 
@@ -56,7 +56,7 @@ describe("compiling source (static exports name)", () => {
 			plugins: [[path.join(__dirname, pluginPath), { type: "indexjs" }]],
 		};
 		expect(
-			compileSource(readFile("fixtures/index.js"), config)
+			compileSource(readFile("fixtures/webapps/index.js"), config)
 		).toMatchSnapshot();
 	});
 });
@@ -76,7 +76,7 @@ describe("error handling", () => {
 			plugins: [[path.join(__dirname, pluginPath), { type: "invalidType" }]],
 		};
 		expect(() => {
-			compileSource(readFile("fixtures/main.js"), config);
+			compileSource(readFile("fixtures/webapps/main.js"), config);
 		}).toThrow();
 	});
 });
