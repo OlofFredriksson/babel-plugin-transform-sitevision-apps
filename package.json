@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-transform-sitevision-apps",
   "version": "0.1.0",
-  "description": "This plugins transforms ES2015 modules to Sitevision modules\"",
+  "description": "This plugins transforms ES2015 modules to Sitevision Webapps",
   "main": "dist/transform.js",
   "scripts": {
     "build": "mkdir -p dist && babel src/transform.js -o dist/transform.js",
