@@ -15,16 +15,16 @@ function readFile(fileName) {
 }
 
 function compileSource(source, config) {
-	const plugins = Object.assign({}, defaultConfig, config);
-	const { code } = babel.transformSync(source, plugins);
+	const effectiveConfig = Object.assign({}, defaultConfig, config);
+	const { code } = babel.transformSync(source, effectiveConfig);
 	return code;
 }
 
 function compileFile(fileName, config) {
-	const plugins = Object.assign({}, defaultConfig, config);
+	const effectiveConfig = Object.assign({}, defaultConfig, config);
 	const { code } = babel.transformFileSync(
 		path.join(__dirname, fileName),
-		plugins
+		effectiveConfig
 	);
 	return code;
 }
@@ -57,6 +57,15 @@ describe("compiling source (static exports name)", () => {
 		};
 		expect(
 			compileSource(readFile("fixtures/webapps/index.js"), config)
+		).toMatchSnapshot();
+	});
+
+	test("hooks.js", () => {
+		const config = {
+			plugins: [[path.join(__dirname, pluginPath), { type: "indexjs" }]],
+		};
+		expect(
+			compileSource(readFile("fixtures/webapps/hooks.js"), config)
 		).toMatchSnapshot();
 	});
 });

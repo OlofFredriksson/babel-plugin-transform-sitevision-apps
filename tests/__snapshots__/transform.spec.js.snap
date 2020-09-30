@@ -47,6 +47,29 @@ exports[`compiling source (static exports name) exported function 1`] = `
 });"
 `;
 
+exports[`compiling source (static exports name) hooks.js 1`] = `
+"(function () {
+  'use strict';
+
+  var _hooks = require(\\"hooks\\");
+
+  var _eventsApi = require(\\"/module/server/eventsApi\\");
+
+  var _underscore = require(\\"underscore\\");
+
+  // From https://developer.sitevision.se/docs/webapps/pre-render-hooks
+  (0, _hooks.beforeRender)(req => {
+    const data = (0, _eventsApi.getEventData)(req.params.eventId);
+    req.context.eventData = data; // req.context is propagated to the rendering phase (index.js)
+  });
+  (0, _hooks.getPageTitle)(req => req.context.eventData.title);
+  (0, _hooks.addHeadElement)(req => {
+    const description = (0, _underscore.escape)(req.context.eventData.description);
+    return \`<meta property=\\"og:description\\" content=\\"\${description}\\">\`;
+  });
+})();"
+`;
+
 exports[`compiling source (static exports name) index.js 1`] = `
 "(function () {
   'use strict';
