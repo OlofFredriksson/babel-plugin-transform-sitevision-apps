@@ -28,7 +28,7 @@
     "url": "git@github.com:OlofFredriksson/babel-plugin-transform-sitevision-apps.git"
   },
   "keywords": [
-    "babel-plugin"
+    "sitevision", "webapps", "restapps", "babel", "babel-plugin"
   ],
   "author": "Olof",
   "license": "MIT",
