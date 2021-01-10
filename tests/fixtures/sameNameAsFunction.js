@@ -1,3 +1,3 @@
 export function sameNameAsFunction() {
-	return 10;
+    return 10;
 }

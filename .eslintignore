@@ -5,5 +5,3 @@
 # compiled files
 /dist
 *.junit.xml
-
-tests/fixtures

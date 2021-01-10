@@ -6,5 +6,4 @@
 /dist
 *.junit.xml
 
-tests/fixtures
 .github
