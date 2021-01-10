@@ -9,10 +9,10 @@
 
 Sitevision Webapps file tree: https://developer.sitevision.se/docs/webapps/getting-started
 
-- index.js
-- main.js
-- modules
-- Pre render hooks (introduced in SV: 6.2)
+-   index.js
+-   main.js
+-   modules
+-   Pre render hooks (introduced in SV: 6.2)
 
 See files in `test/` for ES6-ified files.
 
