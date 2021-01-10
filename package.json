@@ -41,7 +41,7 @@
     "dist/**"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "dependencies": {
     "@babel/helper-module-transforms": "^7.11.0",
