@@ -2,6 +2,12 @@
 
 > Transform Sitevision Server Side Javascript.
 
+**Only for application build in the old / legacy way**
+If you are building applications in the "bundled" mode, this plugin is not needed.
+
+Read more about bundled apps here:
+https://developer.sitevision.se/archives/developer-news/developer-news/2021-06-10-bundled-apps
+
 [![Build](https://github.com/OlofFredriksson/babel-plugin-transform-sitevision-apps/workflows/Build/badge.svg)](https://github.com/OlofFredriksson/babel-plugin-transform-sitevision-apps/actions)
 [![npm](https://img.shields.io/npm/v/babel-plugin-transform-sitevision-apps)](https://www.npmjs.com/package/babel-plugin-transform-sitevision-apps)
 
